@@ -15,6 +15,7 @@ public class Level {
         grid = new boolean[gridX][gridY];
         takenPoints = new ArrayList<Point>();
         defaultGrid();
+        loadGrid();
     }
 
     private void defaultGrid() {
@@ -42,30 +43,75 @@ public class Level {
         while(takenPoints.size() < 420) {
             /////////make a path////////
             if(ran.nextInt(5) <= 1) {
-                int pathWidth = ran.nextInt(3) + 1;
-                int pathLength = ran.nextInt(10) + 1;
-                int pathX = takenPoints.get(ran.nextInt(takenPoints.size())).x;
+                int pathWidth = ran.nextInt(6) - 3;
+                int pathLength = ran.nextInt(20) - 10;
+                int ranN = ran.nextInt(takenPoints.size());
+                int pathX = takenPoints.get(ranN).x;
                 int pathY = takenPoints.get(ran.nextInt(takenPoints.size())).y;
                 int endX;
                 int endY;
-                if(ran.nextInt(2) <= 1) {
-                    endX = pathWidth;
-                    endY = pathLength;
-                } else {
-                    endX = pathLength;
-                    endY = pathWidth;
-                }
-                for(int i = pathX; i < endX; i++) {
-                    for(int j = pathY; j < endY; j++) {
-                        grid[i][j] = true;
-                        takenPoints.add(new Point(i, j));
+                int changeX, changeY;
+                if(pathWidth != 0 && pathLength != 0) {
+                    if(ran.nextInt(2) <= 1) {
+                        endX = pathWidth + pathX;
+                        endY = pathLength + pathY;
+                    } else {
+                        endX = pathLength + pathX;
+                        endY = pathWidth + pathY;
+                    }
+                    if(endX < pathX) {
+                        changeX = -1;
+                    } else {
+                        changeX = 1;
+                    }
+                    if(endY < pathY) {
+                        changeY = -1;
+                    } else {
+                        changeY = 1;
+                    }
+                    for(int i = pathX; i < endX; i+=changeX) {
+                        for(int j = pathY; j < endY; j+=changeY) {
+                            if(i < 30 && j < 20) {
+                                grid[i][j] = true;
+                                takenPoints.add(new Point(i, j));
+                            }
+                        }
                     }
                 }
             }
             ////////MAKE A ROOM/////////
             else {
-
+                int roomWidth = ran.nextInt(24) - 12;
+                int roomHeight = ran.nextInt(24) - 12;
+                int ranN = ran.nextInt(takenPoints.size());
+                int startRoomX = takenPoints.get(ranN).x;
+                int startRoomY = takenPoints.get(ranN).y;
+                int changeX, changeY;
+                if(roomWidth != 0 && roomHeight != 0) {
+                    if(roomWidth < 0) {
+                        changeX = -1;
+                    } else {
+                        changeX = 1;
+                    }
+                    if(roomHeight < 0) {
+                        changeY = -1;
+                    } else {
+                        changeY = 1;
+                    }
+                    for(int i = startRoomX; i < roomWidth + startRoomX; i+=changeX) {
+                        for(int j = startRoomY; j < roomHeight + startRoomY; j+=changeY) {
+                            if(i < 30 && j < 20) {
+                                grid[i][j] = true;
+                                takenPoints.add(new Point(i, j));
+                            }
+                        }
+                    }
+                }
             }
         }
+    }
+
+    public boolean[][] getGrid() {
+        return grid;
     }
 }

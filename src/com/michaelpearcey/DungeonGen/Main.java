@@ -21,8 +21,11 @@ import org.lwjgl.opengl.DisplayMode;
 public class Main {
 
     private final int FWIDTH = 1200, FHEIGHT = 800; // Frame parameters
+    private static GameHandler gh;
 
     public static void main(String[] args) {
+        gh = new GameHandler();
+        gh.run();
         new Main();
     }
 

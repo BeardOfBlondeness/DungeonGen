@@ -13,7 +13,7 @@ public class GameHandler {
 
     public void run() {
         if(inGame) {
-
+            g.run();
         }
     }
 }
