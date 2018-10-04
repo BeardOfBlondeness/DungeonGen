@@ -24,14 +24,13 @@ public class Main {
     private static GameHandler gh;
 
     public static void main(String[] args) {
-        gh = new GameHandler();
-        gh.run();
         new Main();
     }
 
     public Main() {
         try {
             display();
+            gh = new GameHandler();
             update();
         } catch (LWJGLException e) {
             // TODO Auto-generated catch block
@@ -61,7 +60,7 @@ public class Main {
         {
             glClear(GL_COLOR_BUFFER_BIT);
             mainKeyListeners();
-
+            gh.run();
             Display.update();
             Display.sync(60);
             if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {

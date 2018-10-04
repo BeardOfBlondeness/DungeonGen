@@ -27,15 +27,17 @@ public class Level {
     }
 
     private void loadGrid() {
-        int startX = gridX/2;
-        int startY = gridY/2;
+        int startX = 0;
+        int startY = 0;
         Random ran = new Random();
 
         /////SETTING THE DEFAULT ROOM OF 3X3///////
-        for(int i = startX - 1; i < startX + 1; i++) {
-            for(int j = startY - 1; j < startY + 1; j++) {
-                grid[i][j] =  true;
-                takenPoints.add(new Point(i, j));
+        for(int i = startX; i < 3; i++) {
+            for(int j = startY; j < 3; j++) {
+                if(i < 30 && j < 20 && i > 0 && j > 0) {
+                    grid[i][j] = true;
+                    takenPoints.add(new Point(i, j));
+                }
             }
         }
 
@@ -71,7 +73,7 @@ public class Level {
                     }
                     for(int i = pathX; i < endX; i+=changeX) {
                         for(int j = pathY; j < endY; j+=changeY) {
-                            if(i < 30 && j < 20) {
+                            if(i < 30 && j < 20 && i > 0 && j > 0) {
                                 grid[i][j] = true;
                                 takenPoints.add(new Point(i, j));
                             }
@@ -100,7 +102,7 @@ public class Level {
                     }
                     for(int i = startRoomX; i < roomWidth + startRoomX; i+=changeX) {
                         for(int j = startRoomY; j < roomHeight + startRoomY; j+=changeY) {
-                            if(i < 30 && j < 20) {
+                            if(i < 30 && j < 20 && i > 0 && j > 0) {
                                 grid[i][j] = true;
                                 takenPoints.add(new Point(i, j));
                             }
