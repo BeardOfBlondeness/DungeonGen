@@ -16,4 +16,16 @@ public class GameHandler {
             g.run();
         }
     }
+
+    public void zoom(boolean zoomIn) {
+        g.zoom(zoomIn);
+    }
+
+    public void move(int direction) {
+        g.move(direction);
+    }
+
+    public void moveP(int direction) {
+        g.moveP(direction);
+    }
 }

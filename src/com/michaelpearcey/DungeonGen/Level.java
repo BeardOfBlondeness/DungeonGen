@@ -44,7 +44,7 @@ public class Level {
         /////BUILDING OUTER ROOMS OR PATHS///////
         while(takenPoints.size() < 420) {
             /////////make a path////////
-            if(ran.nextInt(5) <= 1) {
+            if(ran.nextInt(5) <= 3) {
                 int pathWidth = ran.nextInt(6) - 3;
                 int pathLength = ran.nextInt(20) - 10;
                 int ranN = ran.nextInt(takenPoints.size());

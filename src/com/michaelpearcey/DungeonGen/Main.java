@@ -76,6 +76,29 @@ public class Main {
     }
 
     public void mainKeyListeners() {
-
+        if(Keyboard.isKeyDown(Keyboard.KEY_UP)) {
+            gh.zoom(true);
+        } else if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
+            gh.zoom(false);
+        }
+        if(Keyboard.isKeyDown(Keyboard.KEY_I)) {
+            gh.move(0);
+        } else if(Keyboard.isKeyDown(Keyboard.KEY_K)) {
+            gh.move(2);
+        }
+        if(Keyboard.isKeyDown(Keyboard.KEY_L)) {
+            gh.move(1);
+        } else if(Keyboard.isKeyDown(Keyboard.KEY_J)) {
+            gh.move(3);
+        }
+        if(Keyboard.isKeyDown(Keyboard.KEY_W)) {
+            gh.moveP(0);
+        } else if(Keyboard.isKeyDown(Keyboard.KEY_S))
+            gh.moveP(2);
+        if(Keyboard.isKeyDown(Keyboard.KEY_D))
+            gh.moveP(1);
+        else if(Keyboard.isKeyDown(Keyboard.KEY_A))
+            gh.moveP(3);
     }
+
 }

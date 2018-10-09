@@ -14,6 +14,22 @@ public class Sprite {
     private Texture tex;
     private float x, y;
     private float xRes, yRes;
+    private float originalX, originalY;
+    private float originalxRes, originalyRes;
+
+    public Sprite(){}
+
+    protected void init(String textureLocation, float x, float y, int xRes, int yRes) {
+        tex = loadTexture(textureLocation);
+        this.x = x;
+        this.y = y;
+        this.xRes = xRes;
+        this.yRes = yRes;
+        originalX = x;
+        originalY = y;
+        originalxRes = xRes;
+        originalyRes = yRes;
+    }
 
     public Sprite(String textureLoaction, float x, float y, int xRes, int yRes) {
         tex = loadTexture(textureLoaction);
@@ -21,6 +37,10 @@ public class Sprite {
         this.y = y;
         this.xRes = xRes;
         this.yRes = yRes;
+        originalX = x;
+        originalY = y;
+        originalxRes = xRes;
+        originalyRes = yRes;
     }
 
     public void draw() {
@@ -39,7 +59,7 @@ public class Sprite {
         glPopMatrix();
     }
 
-    public static Texture loadTexture(String path) {
+    private Texture loadTexture(String path) {
         Texture tex = null;
         InputStream in = ResourceLoader.getResourceAsStream(path);
         try {
@@ -49,6 +69,32 @@ public class Sprite {
             e.printStackTrace();
         }
         return tex;
+    }
+
+    public void setTempLocation(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public void setTempSize(float x, float y) {
+        this.xRes = x;
+        this.yRes = y;
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public float getxRes() {
+        return xRes;
+    }
+
+    public float getyRes() {
+        return yRes;
     }
 
 }
